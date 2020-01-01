@@ -68,29 +68,32 @@ function registerUser(e, data) {
 		.then((res) => {
 			//default prompt should display an error
 			var prompt = { title: 'Failed to Register', type: 'error' };
-
 			//if registered return true from the GRAPHQL API then change prompt
 			if (res.data.register) {
 				prompt = { title: 'Succesfully Registered', type: 'success' };
 			}
-
-			//function that calls UI component
-			MySwal.fire({
-				title: prompt.title,
-				type: prompt.type
-			}).then((result) => {
-				//if the prompt is successful and the pop up button is clicked go home
-				if (result.value) {
-					if (prompt.type === 'success') {
-						window.location.href = '/';
-					}
-				}
-			});
+			//alert the use a UI response
+			sweatAlert(prompt);
 		})
 		.catch((err) => {
 			//This logs the error onto the console
 			console.error(err + ' => Register View : FAILED AT registerUser');
 			//Displays error to user
-			MySwal.fire('Error', 'Internal Server Error', 'error');
+			sweatAlert({ title: 'Internal Server Error', type: 'error' });
 		});
+}
+
+function sweatAlert(prompt) {
+	//function that calls UI component
+	MySwal.fire({
+		title: prompt.title,
+		type: prompt.type
+	}).then((result) => {
+		//if the prompt is successful and the pop up button is clicked go home
+		if (result.value) {
+			if (prompt.type === 'success') {
+				window.location.href = '/';
+			}
+		}
+	});
 }

@@ -78,22 +78,27 @@ function loginUser(e, data) {
 			}
 
 			//function that calls UI component
-			MySwal.fire({
-				title: prompt.title,
-				type: prompt.type
-			}).then((result) => {
-				//if the prompt is successful and the pop up button is clicked go home
-				if (result.value) {
-					if (prompt.type === 'success') {
-						window.location.href = '/';
-					}
-				}
-			});
+			sweatAlert(prompt);
 		})
 		.catch((err) => {
 			//This logs the error onto the console
 			console.error(err + ' => LoginIn View : FAILED AT loginUser');
 			//Displays error to user
-			MySwal.fire('Error', 'Internal Server Error', 'error');
+			sweatAlert({ title: 'Internal Server Error', type: 'error' });
 		});
+}
+
+function sweatAlert(prompt) {
+	//function that calls UI component
+	MySwal.fire({
+		title: prompt.title,
+		type: prompt.type
+	}).then((result) => {
+		//if the prompt is successful and the pop up button is clicked go home
+		if (result.value) {
+			if (prompt.type === 'success') {
+				window.location.href = '/';
+			}
+		}
+	});
 }
