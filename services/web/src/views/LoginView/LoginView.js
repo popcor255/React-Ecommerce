@@ -84,7 +84,7 @@ function loginUser(e, data) {
 			}).then((result) => {
 				//if the prompt is successful and the pop up button is clicked go home
 				if (result.value) {
-					if (prompt.type == 'success') {
+					if (prompt.type === 'success') {
 						window.location.href = '/';
 					}
 				}
@@ -92,7 +92,7 @@ function loginUser(e, data) {
 		})
 		.catch((err) => {
 			//This logs the error onto the console
-			console.error(err + ' => ' + 'LoginIn View : FAILED AT loginUser');
+			console.error(err + ' => LoginIn View : FAILED AT loginUser');
 			//Displays error to user
 			MySwal.fire('Error', 'Internal Server Error', 'error');
 		});

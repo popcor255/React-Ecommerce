@@ -81,7 +81,7 @@ function registerUser(e, data) {
 			}).then((result) => {
 				//if the prompt is successful and the pop up button is clicked go home
 				if (result.value) {
-					if (prompt.type == 'success') {
+					if (prompt.type === 'success') {
 						window.location.href = '/';
 					}
 				}
@@ -89,7 +89,7 @@ function registerUser(e, data) {
 		})
 		.catch((err) => {
 			//This logs the error onto the console
-			console.error(err + ' => ' + 'Register View : FAILED AT registerUser');
+			console.error(err + ' => Register View : FAILED AT registerUser');
 			//Displays error to user
 			MySwal.fire('Error', 'Internal Server Error', 'error');
 		});
