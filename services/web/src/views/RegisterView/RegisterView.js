@@ -27,18 +27,22 @@ const REGISTER_MUTATION = gql`
 
 //main function that renders the view
 export default function RegisterView() {
+	let email;
+	let password;
+	let register;
+
 	//assinging the mutation to a function
-	let data = { register: useMutation(REGISTER_MUTATION) };
+	register = useMutation(REGISTER_MUTATION);
 
 	//TODO: FORM VALIDATION
 	return (
 		<div id="container">
-			<form onSubmit={(e) => registerUser(e, data)} name="registerForm" className="form">
+			<form onSubmit={(e) => registerUser(e, { register, email, password })} name="registerForm" className="form">
 				<span className="fontawesome-user" />
-				<input ref={(val) => (data.email = val)} type="text" id="user" placeholder="Username" />
+				<input ref={(val) => (email = val)} type="text" id="user" placeholder="Username" />
 
 				<span className="fontawesome-lock" />
-				<input ref={(val) => (data.password = val)} type="password" id="pass" placeholder="Password" />
+				<input ref={(val) => (password = val)} type="password" id="pass" placeholder="Password" />
 
 				<input type="submit" value="Register" />
 			</form>
@@ -55,8 +59,11 @@ function registerUser(e, data) {
 	//and do not submit
 	e.preventDefault();
 
-	//Get values from map and deconstruct to variables
-	let [ register, email, password ] = Object.values(data);
+	console.log(data);
+
+	let register = data.register[0];
+	let email = data.email;
+	let password = data.password;
 
 	//call the graphQL endpoint with the given variables, since its an outside API call its a promise
 	register({ variables: { email: email.value, password: password.value } })
