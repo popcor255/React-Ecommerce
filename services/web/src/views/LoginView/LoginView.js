@@ -28,6 +28,7 @@ const LOGIN_MUTATION = gql`
 	}
 `;
 
+//This function that renders the view
 export default function LoginView() {
 	let login;
 	let email;
@@ -52,9 +53,14 @@ export default function LoginView() {
 	);
 }
 
+//This function logins in a user
 function loginUser(e, data) {
+	//Disable page refresh with preventDefault
+	//preventDefault does have some weird behaviors
+	//so it make cause some UI problems later
+	//to avoid, use a div instead of a button or input
+	//and do not submit
 	e.preventDefault();
-	console.log(data);
 
 	//map values to variables
 	let login = data.login[0];

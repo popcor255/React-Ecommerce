@@ -34,8 +34,8 @@ export default function RegisterView() {
 	//assinging the mutation to a function
 	register = useMutation(REGISTER_MUTATION);
 
-	//TODO: FORM VALIDATION
 	return (
+		//TODO: FORM VALIDATION
 		<div id="container">
 			<form onSubmit={(e) => registerUser(e, { register, email, password })} name="registerForm" className="form">
 				<span className="fontawesome-user" />
@@ -58,8 +58,6 @@ function registerUser(e, data) {
 	//to avoid, use a div instead of a button or input
 	//and do not submit
 	e.preventDefault();
-
-	console.log(data);
 
 	let register = data.register[0];
 	let email = data.email;
