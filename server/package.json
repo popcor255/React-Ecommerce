@@ -18,7 +18,7 @@
 		"mem": ">=4.0.0"
 	},
 	"dependencies": {
-		"apollo-server-express": "^2.1.0",
+		"apollo-server-express": "^2.14.2",
 		"bcryptjs": "^2.4.3",
 		"express": "^4.16.3",
 		"express-session": "^1.15.6",
